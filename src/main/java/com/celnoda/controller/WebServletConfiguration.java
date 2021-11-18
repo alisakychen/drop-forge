@@ -1,4 +1,4 @@
-package com.celnoda;
+package com.celnoda.controller;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -14,11 +14,13 @@ public class WebServletConfiguration implements WebApplicationInitializer {
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		
-		AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();
-		appContext.register(ApplicationContextConfiguration.class);
+		AnnotationConfigWebApplicationContext webContext = 
+				new AnnotationConfigWebApplicationContext();
+		webContext.register(SpringMvcConfiguration.class);
+		webContext.setServletContext(servletContext);
 		
 		ServletRegistration.Dynamic servlet = servletContext.addServlet("dispatcher",
-				new DispatcherServlet(appContext));
+				new DispatcherServlet(webContext));
 		
 		servlet.setLoadOnStartup(1);
 		servlet.addMapping("/");

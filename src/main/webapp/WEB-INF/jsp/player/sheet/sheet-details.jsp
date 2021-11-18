@@ -7,9 +7,9 @@
 		<title>Drop Forge</title>
 	</head>
 	<body>
-		<%@include file="WEB-INF/jspf/nav.jspf"%>
 		<div>
-			<p>A <abbr title="character generation">chargen</abbr> app for Crucible, a dark-fantasy roleplaying game</p>
+			Sheet Details placeholder
+			
 			<p>${name}</p>
 		</div>
 	</body>
