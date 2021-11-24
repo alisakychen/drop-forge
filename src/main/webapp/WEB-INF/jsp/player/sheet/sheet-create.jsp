@@ -1,6 +1,7 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 	<head>
-		<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" isELIgnored="false" %>
+		<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/app.css" />
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.min.js"></script>
@@ -12,25 +13,23 @@
 			New Chargen Placeholder
 
 			<form>
+				<c:forEach items=$(playerAttributes) var="attributeName">
 				<fieldset>
-					<legend>{{ name | titlecase }}</legend>
+					<legend>${ attributeName }</legend>
 					<label>
-						<input type="radio" name="strength" id="strength-1" value="0" checked="true" 
-						[(ngModel)]="attr.strength"> 1
+						<input type="radio" name="${ attributeName }" id="${ attributeName }-1" value="0" checked="true" /> 1
 					</label>
 					<label>
-						<input type="radio" name="strength" id="strength-2" value="3" 
-						[(ngModel)]="attr.strength"> 2
+						<input type="radio" name="${ attributeName }" id="${ attributeName }-2" value="3" /> 2
 					</label>
 					<label>
-						<input type="radio" name="strength" id="strength-3" value="6" 
-						[(ngModel)]="attr.strength"> 3
+						<input type="radio" name="${ attributeName }" id="${ attributeName }-3" value="6" /> 3
 					</label>
 					<label>
-						<input type="radio" name="strength" id="strength-4" value="9" 
-						[(ngModel)]="attr.strength"> 4
+						<input type="radio" name="${ attributeName }" id="${ attributeName }-4" value="9" /> 4
 					</label>
 				</fieldset>
+				</c:forEach>
 			</form>
 		</div>
 	</body>

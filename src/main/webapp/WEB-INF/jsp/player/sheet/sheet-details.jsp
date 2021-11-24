@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" isELIgnored="false" %>
+		<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/app.css" />
 

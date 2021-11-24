@@ -1,4 +1,4 @@
-package com.celnoda.controller;
+package com.celnoda.dropforge.controller;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;

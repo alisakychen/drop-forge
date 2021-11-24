@@ -1,4 +1,4 @@
-package com.celnoda.controller;
+package com.celnoda.dropforge.controller;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
