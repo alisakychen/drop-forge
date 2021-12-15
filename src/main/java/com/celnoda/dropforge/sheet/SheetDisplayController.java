@@ -3,25 +3,33 @@ package com.celnoda.dropforge.sheet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.celnoda.dropforge.playercharacter.PlayerCharacterManager;
 import com.celnoda.dropforge.playercharacter.Attribute;
+import com.celnoda.dropforge.playercharacter.PlayerCharacterManager;
 
 
 @Controller
 public class SheetDisplayController {
 	
 	@Autowired
-	PlayerCharacterManager pcManager;
+	private PlayerCharacterManager pcManager;
+	
+	@GetMapping(value = "/")
+	public String getIndexPage() {
+	
+		return "index";
+	}
 
-	@RequestMapping(value = "/sheet/create")
+	
+	@RequestMapping(value = "/sheet/create", method = RequestMethod.GET)
 	public String navSheetCreate(Model model) {
 		
-		model.addAttribute("playerAttr", Attribute.getStrings());
+		model.addAttribute("playerAttributes", Attribute.getStrings());
 
-		return "/player/sheet/sheet-create";
+		return "sheet-create";
 	}
 
 	@RequestMapping(value = "/sheets", method = RequestMethod.GET)
@@ -29,15 +37,15 @@ public class SheetDisplayController {
 		
 		model.addAttribute("player-characters", pcManager.getPlayerCharacters());
 		
-		return "/player/sheet/sheets";
+		return "sheets";
 	}
 	
-	@RequestMapping(value = "/sheet/details")
+	@RequestMapping(value = "/sheet/details", method = RequestMethod.GET)
 	// @RequestMapping(value = "/sheet/details/{id}")
 	public String navSheetDetails(Model model) {
 		
 		model.addAttribute("name", "Posarios - Rabble of Sloth");
 		
-		return "/player/sheet/sheet-details";
+		return "sheet-details";
 	}
 }

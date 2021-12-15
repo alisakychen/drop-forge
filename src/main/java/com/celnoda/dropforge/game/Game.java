@@ -1,7 +1,6 @@
 package com.celnoda.dropforge.game;
 
 import java.io.Serializable;
-import java.util.Arrays;
 
 public class Game implements Serializable {	
 	private static final long serialVersionUID = 3501739505617744446L;

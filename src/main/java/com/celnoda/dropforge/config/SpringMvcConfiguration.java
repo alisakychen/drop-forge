@@ -1,4 +1,4 @@
-package com.celnoda.dropforge.controller;
+package com.celnoda.dropforge.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @EnableWebMvc
-@ComponentScan(basePackages = "com.celnoda" )
+@ComponentScan(basePackages = "com.celnoda.dropforge" )
 @Configuration
 public class SpringMvcConfiguration implements WebMvcConfigurer	{
 
@@ -20,7 +20,7 @@ public class SpringMvcConfiguration implements WebMvcConfigurer	{
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 
 		viewResolver.setViewClass(JstlView.class);
-		viewResolver.setPrefix("/");
+		viewResolver.setPrefix("/WEB-INF/jsp/");
 		viewResolver.setSuffix(".jsp");
 
 		return viewResolver;
