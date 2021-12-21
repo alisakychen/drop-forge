@@ -1,9 +1,11 @@
-package com.celnoda.dropforge.game;
+package com.celnoda.dropforge.dao;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
+
+import com.celnoda.dropforge.model.Game;
 
 @Repository
 public class GameDAOImpl implements GameDAO {

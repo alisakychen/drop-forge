@@ -1,9 +1,11 @@
-package com.celnoda.dropforge.playercharacter;
+package com.celnoda.dropforge.dao;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
+
+import com.celnoda.dropforge.model.PlayerCharacter;
 
 @Repository
 public class PlayerCharacterDAOImpl implements PlayerCharacterDAO {
@@ -19,5 +21,10 @@ public class PlayerCharacterDAOImpl implements PlayerCharacterDAO {
 		characterList.add(new PlayerCharacter("Posarios"));
 		
 		return characterList;
+	}
+
+	@Override
+	public PlayerCharacter createPlayerCharacter(PlayerCharacter character) {		
+		return character;
 	}
 }

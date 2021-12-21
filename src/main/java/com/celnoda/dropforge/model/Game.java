@@ -1,4 +1,4 @@
-package com.celnoda.dropforge.game;
+package com.celnoda.dropforge.model;
 
 import java.io.Serializable;
 
@@ -9,7 +9,6 @@ public class Game implements Serializable {
 	
 	private String name;
 	private String desc;
-	private Long[] playerIds;
 	
 	public Game(String name) {
 		this(name, null, null);
@@ -22,12 +21,7 @@ public class Game implements Serializable {
 		
 		this.setName(name);
 		this.setDesc(desc);
-		
-		if (playerIds == null) {
-			playerIds = new Long[0];
-		}
-		System.arraycopy(playerIds, 0, this.playerIds, 0, playerIds.length);
-	}
+			}
 	
 	public Long getId() {
 		return id;
@@ -47,10 +41,6 @@ public class Game implements Serializable {
 
 	public void setDesc(String desc) {
 		this.desc = desc;
-	}
-
-	public Long[] getPlayerIds() {
-		return this.playerIds;
 	}
 }
 

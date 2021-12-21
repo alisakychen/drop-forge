@@ -1,4 +1,4 @@
-package com.celnoda.dropforge.playercharacter;
+package com.celnoda.dropforge.model;
 
 import java.io.Serializable;
 import java.util.Arrays;
@@ -32,7 +32,8 @@ public class PlayerCharacter implements Serializable {
 		this.setGameId(gameId);
 		this.setName(name);
 		this.setDesc(desc);
-		
+
+		this.attributes = new Integer[Attribute.size()];
 		if (attributes == null) {
 			attributes = new Integer[Attribute.size()];
 			Arrays.fill(attributes, 1);
@@ -67,9 +68,17 @@ public class PlayerCharacter implements Serializable {
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}
+	
+	public Integer getAttr(String attributeName) {
+		return getAttr(Attribute.valueOf(attributeName));
+	}
 
 	public Integer getAttr(Attribute attr) {
 		return this.attributes[attr.ordinal()];
+	}
+
+	public void setAttr(String attributeName, Integer level) {
+		setAttr(Attribute.valueOf(attributeName), level);
 	}
 
 	public void setAttr(Attribute attr, Integer level) {

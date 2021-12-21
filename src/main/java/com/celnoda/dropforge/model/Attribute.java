@@ -1,4 +1,4 @@
-package com.celnoda.dropforge.playercharacter;
+package com.celnoda.dropforge.model;
 
 import java.util.stream.Stream;
 

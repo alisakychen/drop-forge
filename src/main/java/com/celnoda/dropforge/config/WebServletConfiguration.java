@@ -1,5 +1,7 @@
 package com.celnoda.dropforge.config;
 
+import java.nio.file.DirectoryStream.Filter;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
@@ -24,6 +26,7 @@ public class WebServletConfiguration implements WebApplicationInitializer {
 		
 		servlet.setLoadOnStartup(1);
 		servlet.addMapping("/");
+		
+		servletContext.addFilter("corsFilter", new CORSFilter());
 	}
-	
 }
