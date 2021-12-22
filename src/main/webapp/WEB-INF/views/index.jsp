@@ -2,11 +2,7 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="df" %>
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/app.css" />
-
-		<title>Drop Forge</title>
-	</head>
+	<df:head title="Drop Forge" />
 	<body>
 		<df:nav />
 		<div>

@@ -2,12 +2,7 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="df" %>
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/app.css" />
-
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.min.js"></script>
-  	<title>Drop Forge</title>
-	</head>
+	<df:head title="Drop Forge" />
 	<body ng-app="dropForgeApp">
     <df:nav />
 		<div>
