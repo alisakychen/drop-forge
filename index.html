@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Drop Forge</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js">
+    </script>
+        <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    >
+<!--     <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+ -->
+  <style>
+    body {
+      padding: 4em;
+    }
+    form > fieldset {
+      margin-bottom: 1em;
+      padding-left: 1.5rem;
+      &> legend {
+        font-weight: bold;
+        margin-bottom: 1.5em;
+        margin-left: -1.5em;
+      }
+    }
+  </style>
+  </head>
+
+  <body>
+    <h1>Drop Forge</h1>
+
+    <form id="chargen">
+      <fieldset id="attributes">
+        <legend>Attributes</legend>
+        <div class="columns"></div>
+        <p><span class="xp-total">0</span> XP used</p>
+      </fieldset>
+
+      <fieldset id="skills">
+        <legend>Skills</legend>
+        <div class="columns"></div>
+        <p><span class="xp-total">0</span> XP used</p>
+      </fieldset>
+    </form>
+    <footer>
+    </footer>
+
+    <script type="text/template" id="template_traitRadios">
+      <% for (const subType in traits) { %>
+        <fieldset class="column">
+          <legend><%= (capitalize(subType)) %></legend>
+        <% for (const n in traits[subType]) { 
+            const traitName = traits[subType][n];
+        %>
+          <fieldset class="radios">
+            <legend><%= (capitalize(traitName)) %></legend>
+            <% for (var i = min; i <= max; i++) { %>
+              <label class="radio">
+                <input type="radio" name="<%= traitType %>-<%= traitName %>" value="<%= i %>"
+                  <%= ((i == checkedVal) ? "checked" : "") %>
+                />
+                  <%= i %>
+              </label>
+            <% } %>
+          </fieldset>
+        <% } %>
+        </fieldset>
+      <% } %>
+    </script>
+    <script type="application/javascript">
+      // function main() {
+        const attributes = {
+          "physical": ["strength", "dexterity", "fitness"],
+          "mental": ["intellect", "intuition", "composure"],
+          "social": ["bearing", "guile", "willpower"],
+        };
+
+        const skills = {
+          "physical": ["Awareness", "Athletics", "Defense", "Melee", "Ranged", "Unarmed", "Stealth", "Thievery"],
+          "mental": ["Academics", "Administration", "Artisan", "Craft", "Investigation", "Lore", "Medicine", "Survival"],
+          "social": ["Animal Handling", "Empathy", "Language", "Mingling", "Perform", "Persuasion", "Subterfuge"],
+        };
+
+        const compiledTrait = _.template(document.querySelector("#template_traitRadios").innerHTML);
+
+        function capitalize(str) {
+          return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+
+        const attributesHTML = compiledTrait({
+          traitType: "attribute",
+          traits: attributes,
+          min: 1,
+          max: 5,
+          checkedVal: 1,
+          capitalize: capitalize,
+        });
+
+        document.querySelector("#attributes .columns").insertAdjacentHTML("beforeend", attributesHTML);
+
+        const skillsHTML = compiledTrait({
+          traitType: "skills",
+          traits: skills,
+          min: 0,
+          max: 6,
+          checkedVal: 0,
+          capitalize: capitalize,
+        });
+        
+        document.querySelector("#skills .columns").insertAdjacentHTML("beforeend", skillsHTML);
+
+        const attrExpCost = [0, 3, 6, 9, 12];
+        const skillExpCost = [2, 1, 2, 3, 6, 9];
+
+        function getSum(acc, curr) {
+          return acc + curr;
+        }
+
+        function getXPTotal(fieldset, xpCost) {
+          const checkedAttr = document.querySelectorAll(fieldset + ' :checked');
+          var total = 0;
+          var points;
+
+          for (var i = 0, len = checkedAttr.length; i < len; i++) {
+            points = parseInt(checkedAttr[i].value, 10);
+
+            if (points > 0) {
+              total += xpCost.slice(0, points).reduce(getSum);              
+            }
+          }
+
+          return total;
+        }
+
+        var updateXPTotal = function (event) {
+          document.querySelector('#attributes .xp-total').innerText = getXPTotal("#attributes", attrExpCost);
+          document.querySelector('#skills .xp-total').innerText = getXPTotal("#skills", skillExpCost);
+        }
+
+        const formEl = document.querySelector('form#chargen');
+        formEl.addEventListener("change", updateXPTotal);
+      // }
+
+      // main();
+    </script>
+  </body>
+</html>
