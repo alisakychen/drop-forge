@@ -18,7 +18,8 @@
  -->
   <style>
     body {
-      padding: 4em;
+      padding: 1.5rem;
+      max-width: 1023px;
     }
     form > fieldset {
       margin-bottom: 1em;
@@ -29,11 +30,17 @@
         margin-left: -1.5em;
       }
     }
+
+    label.radio {
+      max-width: 1em;
+      text-align: center;
+    }
   </style>
   </head>
 
   <body>
     <h1>Drop Forge</h1>
+    <p class="intro">A chargen calculator for Crucible, a dark-fantasy roleplaying game. Crucible is © James Lloyd-Jones 2011-2026.</p>
 
     <form id="chargen">
       <fieldset id="attributes">
@@ -53,7 +60,7 @@
 
     <script type="text/template" id="template_traitRadios">
       <% for (const subType in traits) { %>
-        <fieldset class="column">
+        <fieldset class="column is-one-third">
           <legend><%= (capitalize(subType)) %></legend>
         <% for (const n in traits[subType]) { 
             const traitName = traits[subType][n];
